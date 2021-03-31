@@ -1,7 +1,7 @@
 package com.inditex.entities;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,10 +25,10 @@ public class Prices implements Serializable{
 	private Integer brandId;	// foreign key
 	
 	@Column(name="START_DATE")
-	private Date startDate;
+	private Timestamp startDate;
 	
 	@Column(name="END_DATE")
-	private Date endDate;
+	private Timestamp endDate;
 	
 	@Column(name="PRODUCT_ID")
 	private Integer productId;
@@ -65,22 +65,22 @@ public class Prices implements Serializable{
 	}
 
 
-	public Date getStartDate() {
+	public Timestamp getStartDate() {
 		return startDate;
 	}
 
 
-	public void setStartDate(Date startDate) {
+	public void setStartDate(Timestamp startDate) {
 		this.startDate = startDate;
 	}
 
 
-	public Date getEndDate() {
+	public Timestamp getEndDate() {
 		return endDate;
 	}
 
 
-	public void setEndDate(Date endDate) {
+	public void setEndDate(Timestamp endDate) {
 		this.endDate = endDate;
 	}
 
