@@ -18,6 +18,9 @@ public class Prices implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="PRICE_LIST")
+	private Integer priceList;
+	
 	@Column(name="BRAND_ID")
 	private Integer brandId;	// foreign key
 	
@@ -27,11 +30,8 @@ public class Prices implements Serializable{
 	@Column(name="END_DATE")
 	private Date endDate;
 	
-	@Column(name="PRICE_LIST")
-	private Integer priceList;
-	
 	@Column(name="PRODUCT_ID")
-	private Long productId;
+	private Integer productId;
 	
 	@Column(name="PRIORITY")
 	private Integer priority;
@@ -44,6 +44,16 @@ public class Prices implements Serializable{
 
 
 	/* getters y setters */
+	
+	public Integer getPriceList() {
+		return priceList;
+	}
+
+
+	public void setPriceList(Integer priceList) {
+		this.priceList = priceList;
+	}
+	
 	
 	public Integer getBrandId() {
 		return brandId;
@@ -75,22 +85,12 @@ public class Prices implements Serializable{
 	}
 
 
-	public Integer getPriceList() {
-		return priceList;
-	}
-
-
-	public void setPriceList(Integer priceList) {
-		this.priceList = priceList;
-	}
-
-
-	public Long getProductId() {
+	public Integer getProductId() {
 		return productId;
 	}
 
 
-	public void setProductId(Long productId) {
+	public void setProductId(Integer productId) {
 		this.productId = productId;
 	}
 
