@@ -7,7 +7,7 @@ public class ProductDataInfo {
 	private Integer productId;
 	private Integer brandId;
 	private Date date;
-	private Long finalPrice;
+	private Double finalPrice;
 	
 	public Integer getProductId() {
 		return productId;
@@ -27,10 +27,10 @@ public class ProductDataInfo {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	public Long getFinalPrice() {
+	public Double getFinalPrice() {
 		return finalPrice;
 	}
-	public void setFinalPrice(Long finalPrice) {
+	public void setFinalPrice(Double finalPrice) {
 		this.finalPrice = finalPrice;
 	}
 

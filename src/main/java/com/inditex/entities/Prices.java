@@ -37,7 +37,7 @@ public class Prices implements Serializable{
 	private Integer priority;
 	
 	@Column(name="PRICE")
-	private Long price;
+	private Double price;
 	
 	@Column(name="CURR")
 	private String currency;
@@ -105,12 +105,12 @@ public class Prices implements Serializable{
 	}
 
 
-	public Long getPrice() {
+	public Double getPrice() {
 		return price;
 	}
 
 
-	public void setPrice(Long price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
 
