@@ -1,6 +1,6 @@
 package com.inditex.service;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.inditex.entities.Prices;
@@ -10,6 +10,6 @@ public interface IPricesService {
 
 	public List<Prices> getPrices();
 	
-	public ProductDataInfo getProductDataInfo(Date date, Integer productId, Integer brandId);
+	public ProductDataInfo getProductDataInfo(LocalDateTime date, Integer productId, Integer brandId);
 
 }

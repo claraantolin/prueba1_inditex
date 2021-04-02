@@ -1,8 +1,7 @@
 package com.inditex.rest;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,14 +28,7 @@ public class PricesController {
 	
 	@GetMapping(value="/product")
 	public ProductDataInfo getProductDataInfo(@RequestParam String date, @RequestParam Integer productId, @RequestParam Integer brandId) throws ParseException {
-		Date finalDate;
-		try {
-			finalDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(date);
-		} catch (ParseException e) {
-			return null;
-		}
-		
-		return service.getProductDataInfo(finalDate, productId, brandId);
+		return service.getProductDataInfo(LocalDateTime.parse(date), productId, brandId);
 	}
 	
 }

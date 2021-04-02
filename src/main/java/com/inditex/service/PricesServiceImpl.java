@@ -1,7 +1,7 @@
 package com.inditex.service;
 
+import java.time.LocalDateTime;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,12 +24,12 @@ public class PricesServiceImpl implements IPricesService{
 	}
 
 	@Override
-	public ProductDataInfo getProductDataInfo(Date date, Integer productId, Integer brandId) {
+	public ProductDataInfo getProductDataInfo(LocalDateTime date, Integer productId, Integer brandId) {
 		ProductDataInfo response = new ProductDataInfo();
 		
 		List<Prices> prices = repo.findAll()
 				.stream()
-				.filter(p -> p.getProductId().equals(productId) && p.getBrandId().equals(brandId) && p.getStartDate().compareTo(date) <= 0 && p.getEndDate().compareTo(date) >= 0)
+				.filter(p -> p.getProductId().equals(productId) && p.getBrandId().equals(brandId) && p.getStartDate().isBefore(date) && p.getEndDate().isAfter(date))
 				.sorted(Comparator.comparingInt(Prices::getPriority).reversed())
 				.collect(Collectors.toList());
 		

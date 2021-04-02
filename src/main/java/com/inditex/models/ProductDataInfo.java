@@ -1,12 +1,12 @@
 package com.inditex.models;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class ProductDataInfo {
 	
 	private Integer productId;
 	private Integer brandId;
-	private Date date;
+	private LocalDateTime date;
 	private Double finalPrice;
 	
 	public Integer getProductId() {
@@ -21,10 +21,10 @@ public class ProductDataInfo {
 	public void setBrandId(Integer brandId) {
 		this.brandId = brandId;
 	}
-	public Date getDate() {
+	public LocalDateTime getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(LocalDateTime date) {
 		this.date = date;
 	}
 	public Double getFinalPrice() {
