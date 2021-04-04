@@ -1,6 +1,5 @@
 package com.inditex.rest;
 
-import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -27,7 +26,7 @@ public class PricesController {
 	}
 	
 	@GetMapping(value="/product")
-	public ProductDataInfo getProductDataInfo(@RequestParam String date, @RequestParam Integer productId, @RequestParam Integer brandId) throws ParseException {
+	public ProductDataInfo getProductDataInfo(@RequestParam String date, @RequestParam Integer productId, @RequestParam Integer brandId) throws Exception {
 		return service.getProductDataInfo(LocalDateTime.parse(date), productId, brandId);
 	}
 	

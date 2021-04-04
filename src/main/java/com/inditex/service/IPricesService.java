@@ -10,6 +10,6 @@ public interface IPricesService {
 
 	public List<Prices> getPrices();
 	
-	public ProductDataInfo getProductDataInfo(LocalDateTime date, Integer productId, Integer brandId);
+	public ProductDataInfo getProductDataInfo(LocalDateTime date, Integer productId, Integer brandId) throws Exception;
 
 }

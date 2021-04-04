@@ -24,7 +24,7 @@ public class PricesServiceImpl implements IPricesService{
 	}
 
 	@Override
-	public ProductDataInfo getProductDataInfo(LocalDateTime date, Integer productId, Integer brandId) {
+	public ProductDataInfo getProductDataInfo(LocalDateTime date, Integer productId, Integer brandId) throws Exception {
 		ProductDataInfo response = new ProductDataInfo();
 		
 		List<Prices> prices = repo.findAll()
@@ -33,7 +33,7 @@ public class PricesServiceImpl implements IPricesService{
 				.sorted(Comparator.comparingInt(Prices::getPriority).reversed())
 				.collect(Collectors.toList());
 		
-		if (prices.isEmpty()) return null;
+		if (prices.isEmpty()) throw new Exception("No hay elementos con ese filtro");
 		
 		Prices finalPrice = prices.stream().findFirst().get();
 		
