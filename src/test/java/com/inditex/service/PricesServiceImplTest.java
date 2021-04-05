@@ -39,7 +39,9 @@ public class PricesServiceImplTest {
 	@Test
 	void getProductDataInfoTest1() {
 		date = LocalDateTime.parse("2020-06-14T10:00:00");
-		response = service.getProductDataInfo(date, productId, brandId);
+		try {
+			response = service.getProductDataInfo(date, productId, brandId);
+		} catch (Exception e) {}
 		
 		Assertions.assertEquals(response.getFinalPrice(), 35.5);
 	}
@@ -47,32 +49,41 @@ public class PricesServiceImplTest {
 	@Test
 	void getProductDataInfoTest2() {
 		date = LocalDateTime.parse("2020-06-14T16:00:00");
-		response = service.getProductDataInfo(date, productId, brandId);
-
+		
+		try {
+			response = service.getProductDataInfo(date, productId, brandId);
+		} catch (Exception e) {}
+		
 		Assertions.assertEquals(response.getFinalPrice(), 25.45);
 	}
 	
 	@Test
 	void getProductDataInfoTest3() {
 		date = LocalDateTime.parse("2020-06-14T21:00:00");
-		response = service.getProductDataInfo(date, productId, brandId);
-
+		try {
+			response = service.getProductDataInfo(date, productId, brandId);
+		} catch (Exception e) {}
+		
 		Assertions.assertEquals(response.getFinalPrice(), 35.5);
 	}
 	
 	@Test
 	void getProductDataInfoTest4() {
 		date = LocalDateTime.parse("2020-06-15T10:00:00");
-		response = service.getProductDataInfo(date, productId, brandId);
-
+		try {
+			response = service.getProductDataInfo(date, productId, brandId);
+		} catch (Exception e) {}
+		
 		Assertions.assertEquals(response.getFinalPrice(), 30.5);
 	}
 	
 	@Test
 	void getProductDataInfoTest5() {
 		date = LocalDateTime.parse("2020-06-16T21:00:00");
-		response = service.getProductDataInfo(date, productId, brandId);
-
+		try {
+			response = service.getProductDataInfo(date, productId, brandId);
+		} catch (Exception e) {}
+		
 		Assertions.assertEquals(response.getFinalPrice(), 38.95);
 	}
 	
