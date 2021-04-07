@@ -2,10 +2,10 @@ package com.inditex.service;
 
 import java.time.LocalDateTime;
 
-import com.inditex.models.GetPriceDataInfo;
+import com.inditex.models.GetPriceDataResponse;
 
 public interface PricesService {
 	
-	GetPriceDataInfo getProductDataInfo(LocalDateTime date, Integer productId, Integer brandId);
+	GetPriceDataResponse getPriceDataInfo(LocalDateTime date, Integer productId, Integer brandId);
 
 }
