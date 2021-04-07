@@ -9,23 +9,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.inditex.entities.Prices;
-import com.inditex.models.ProductDataInfo;
-import com.inditex.repository.IPricesRepo;
+import com.inditex.models.GetPriceDataInfo;
+import com.inditex.repository.PricesRepository;
 
 @Service
-public class PricesServiceImpl implements IPricesService{
+public class PricesServiceImpl implements PricesService{
 	
 	@Autowired
-	private IPricesRepo repo;
+	private PricesRepository repo;
 	
 	@Override
-	public List<Prices> getPrices() {
-		return (List<Prices>) repo.findAll();
-	}
-
-	@Override
-	public ProductDataInfo getProductDataInfo(LocalDateTime date, Integer productId, Integer brandId) throws Exception {
-		ProductDataInfo response = new ProductDataInfo();
+	public GetPriceDataInfo getProductDataInfo(LocalDateTime date, Integer productId, Integer brandId) {
+		GetPriceDataInfo response = new GetPriceDataInfo();
 		
 		List<Prices> prices = repo.findAll()
 				.stream()
@@ -33,7 +28,7 @@ public class PricesServiceImpl implements IPricesService{
 				.sorted(Comparator.comparingInt(Prices::getPriority).reversed())
 				.collect(Collectors.toList());
 		
-		if (prices.isEmpty()) throw new Exception("No hay elementos con ese filtro");
+		if (prices.isEmpty()) throw new RuntimeException();
 		
 		Prices finalPrice = prices.stream().findFirst().get();
 		

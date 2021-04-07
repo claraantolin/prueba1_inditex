@@ -2,7 +2,7 @@ package com.inditex.models;
 
 import java.time.LocalDateTime;
 
-public class ProductDataInfo {
+public class GetPriceDataInfo {
 	
 	private Integer productId;
 	private Integer brandId;

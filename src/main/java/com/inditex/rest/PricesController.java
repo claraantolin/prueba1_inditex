@@ -1,33 +1,31 @@
 package com.inditex.rest;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.inditex.entities.Prices;
-import com.inditex.models.ProductDataInfo;
-import com.inditex.service.IPricesService;
+import com.inditex.models.GetPriceDataInfo;
+import com.inditex.service.PricesService;
 
 @RestController
 @RequestMapping("/prices")
 public class PricesController {
 	
 	@Autowired
-	private IPricesService service;
+	private PricesService service;
 	
-	@GetMapping(value="/list")
-	public List<Prices> getPrices() {
-		return service.getPrices();
-	}
-	
-	@GetMapping(value="/product")
-	public ProductDataInfo getProductDataInfo(@RequestParam String date, @RequestParam Integer productId, @RequestParam Integer brandId) throws Exception {
-		return service.getProductDataInfo(LocalDateTime.parse(date), productId, brandId);
+	@GetMapping(value="/product/{productId}/brand/{brandId}/{date}")
+	public GetPriceDataInfo getProductDataInfo(
+			@PathVariable Integer productId, 
+			@PathVariable Integer brandId,
+			@PathVariable(value="date") @DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm:ss") LocalDateTime date) {
+		
+		return service.getProductDataInfo(date, productId, brandId);
 	}
 	
 }

@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.inditex.entities.Prices;
-import com.inditex.models.ProductDataInfo;
+import com.inditex.models.GetPriceDataInfo;
 
 @SpringBootTest
 public class PricesServiceImplTest {
@@ -23,7 +23,7 @@ public class PricesServiceImplTest {
 	//private IPricesRepo repoMock = Mockito.mock(IPricesRepo.class);
 	
 	// parameters
-	ProductDataInfo response;	
+	GetPriceDataInfo response;	
 	private LocalDateTime date;
 	private Integer productId;
 	private Integer brandId;
@@ -39,9 +39,7 @@ public class PricesServiceImplTest {
 	@Test
 	void getProductDataInfoTest1() {
 		date = LocalDateTime.parse("2020-06-14T10:00:00");
-		try {
-			response = service.getProductDataInfo(date, productId, brandId);
-		} catch (Exception e) {}
+		response = service.getProductDataInfo(date, productId, brandId);
 		
 		Assertions.assertEquals(response.getFinalPrice(), 35.5);
 	}
@@ -50,9 +48,7 @@ public class PricesServiceImplTest {
 	void getProductDataInfoTest2() {
 		date = LocalDateTime.parse("2020-06-14T16:00:00");
 		
-		try {
-			response = service.getProductDataInfo(date, productId, brandId);
-		} catch (Exception e) {}
+		response = service.getProductDataInfo(date, productId, brandId);
 		
 		Assertions.assertEquals(response.getFinalPrice(), 25.45);
 	}
@@ -60,9 +56,8 @@ public class PricesServiceImplTest {
 	@Test
 	void getProductDataInfoTest3() {
 		date = LocalDateTime.parse("2020-06-14T21:00:00");
-		try {
-			response = service.getProductDataInfo(date, productId, brandId);
-		} catch (Exception e) {}
+		
+		response = service.getProductDataInfo(date, productId, brandId);
 		
 		Assertions.assertEquals(response.getFinalPrice(), 35.5);
 	}
@@ -70,9 +65,8 @@ public class PricesServiceImplTest {
 	@Test
 	void getProductDataInfoTest4() {
 		date = LocalDateTime.parse("2020-06-15T10:00:00");
-		try {
-			response = service.getProductDataInfo(date, productId, brandId);
-		} catch (Exception e) {}
+
+		response = service.getProductDataInfo(date, productId, brandId);
 		
 		Assertions.assertEquals(response.getFinalPrice(), 30.5);
 	}
@@ -80,9 +74,8 @@ public class PricesServiceImplTest {
 	@Test
 	void getProductDataInfoTest5() {
 		date = LocalDateTime.parse("2020-06-16T21:00:00");
-		try {
-			response = service.getProductDataInfo(date, productId, brandId);
-		} catch (Exception e) {}
+		
+		response = service.getProductDataInfo(date, productId, brandId);
 		
 		Assertions.assertEquals(response.getFinalPrice(), 38.95);
 	}
