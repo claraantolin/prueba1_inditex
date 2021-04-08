@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.inditex.models.GetPriceDataResponse;
+import com.inditex.dtos.PriceDto;
 import com.inditex.service.PricesService;
 
 @RestController
@@ -20,12 +20,12 @@ public class PricesController {
 	private PricesService service;
 	
 	@GetMapping(value="/product/{productId}/brand/{brandId}/{date}")
-	public GetPriceDataResponse getProductDataInfo(
+	public PriceDto getProductDataInfo(
 			@PathVariable Integer productId, 
 			@PathVariable Integer brandId,
 			@PathVariable(value="date") @DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm:ss") LocalDateTime date) {
 		
 		return service.getPriceDataInfo(date, productId, brandId);
 	}
-	
+		
 }

@@ -10,8 +10,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.inditex.dtos.PriceDto;
 import com.inditex.entities.Prices;
-import com.inditex.models.GetPriceDataResponse;
 
 @SpringBootTest
 public class PricesServiceImplTest {
@@ -23,7 +23,7 @@ public class PricesServiceImplTest {
 	//private IPricesRepo repoMock = Mockito.mock(IPricesRepo.class);
 	
 	// parameters
-	GetPriceDataResponse response;	
+	PriceDto response;	
 	private LocalDateTime date;
 	private Integer productId;
 	private Integer brandId;

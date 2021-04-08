@@ -1,8 +1,8 @@
-package com.inditex.models;
+package com.inditex.dtos;
 
 import java.time.LocalDateTime;
 
-public class GetPriceDataResponse {
+public class PriceDto {
 	
 	private Integer productId;
 	private Integer brandId;
