@@ -17,8 +17,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import com.inditex.dtos.PriceDto;
-import com.inditex.entities.Prices;
+import com.inditex.dto.PriceDto;
+import com.inditex.entity.Prices;
 import com.inditex.repository.PricesRepository;
 
 @ExtendWith(SpringExtension.class)
@@ -44,7 +44,7 @@ public class PricesServiceImplTest {
 	}
 	
 	@Test
-	void getPriceDtoTestOK1() {
+	void getPriceDtoTestOK() {
 		date = LocalDateTime.parse("2020-06-14T10:00:00");
 		response = service.getPriceDataInfo(date, productId, brandId);
 
@@ -54,7 +54,7 @@ public class PricesServiceImplTest {
 	}
 	
 	@Test
-	void getPriceDtoTestKO2() {
+	void getPriceDtoTestKO() {
 		when(repositoryMock.findPriceByProductIdAndBrandIdIntoDate(Mockito.any(Integer.class), Mockito.any(Integer.class), Mockito.any(LocalDateTime.class))).thenReturn(new ArrayList<Prices>());
 		
 		Assertions.assertThrows(NoSuchElementException.class, () -> {

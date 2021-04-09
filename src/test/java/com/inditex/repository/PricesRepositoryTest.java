@@ -15,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import com.inditex.entities.Prices;
+import com.inditex.entity.Prices;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -24,8 +24,7 @@ public class PricesRepositoryTest {
 	@Autowired
     private PricesRepository pricesRepository;
 	
-	List<Prices> response;	
-	private LocalDateTime date;
+	List<Prices> response;
 	private Integer productId;
 	private Integer brandId;
 	
@@ -36,58 +35,29 @@ public class PricesRepositoryTest {
 	}
 	
 	@Test
-	void findPriceByProductIdAndBrandIdIntoDateTestOK1() {
-		date = LocalDateTime.parse("2020-06-14T10:00:00");
-		response = pricesRepository.findPriceByProductIdAndBrandIdIntoDate(productId, brandId, date);
-		
-		assertThat(response.stream().findFirst().get().getPrice(), equalTo(35.5));
+	void findPriceByProductIdAndBrandIdIntoDateTestOK() {
+		createOKTest(productId, brandId, LocalDateTime.parse("2020-06-14T10:00:00"), 35.5);
+		createOKTest(productId, brandId, LocalDateTime.parse("2020-06-14T16:00:00"), 25.45);
+		createOKTest(productId, brandId, LocalDateTime.parse("2020-06-14T21:00:00"), 35.5);
+		createOKTest(productId, brandId, LocalDateTime.parse("2020-06-15T10:00:00"), 30.5);
+		createOKTest(productId, brandId, LocalDateTime.parse("2020-06-16T21:00:00"), 38.95);
 	}
 	
-	@Test
-	void findPriceByProductIdAndBrandIdIntoDateTestOK2() {
-		date = LocalDateTime.parse("2020-06-14T16:00:00");
-		response = pricesRepository.findPriceByProductIdAndBrandIdIntoDate(productId, brandId, date);
-		
-		assertThat(response.stream().findFirst().get().getPrice(), equalTo(25.45));
-	}
 	
 	@Test
-	void findPriceByProductIdAndBrandIdIntoDateTestOK3() {
-		date = LocalDateTime.parse("2020-06-14T21:00:00");
-		response = pricesRepository.findPriceByProductIdAndBrandIdIntoDate(productId, brandId, date);
-		
-		assertThat(response.stream().findFirst().get().getPrice(), equalTo(35.5));
+	void findPriceByProductIdAndBrandIdIntoDateTestKO() {
+		createKOTest(33333, brandId, LocalDateTime.parse("2020-06-16T21:00:00"));
+		createKOTest(productId, 2, LocalDateTime.parse("2020-06-16T21:00:00"));
 	}
 	
-	@Test
-	void findPriceByProductIdAndBrandIdIntoDateTestOK4() {
-		date = LocalDateTime.parse("2020-06-15T10:00:00");
+	
+	private void createOKTest (Integer productId, Integer brandId, LocalDateTime date, Double priceExpected) {
 		response = pricesRepository.findPriceByProductIdAndBrandIdIntoDate(productId, brandId, date);
-		
-		assertThat(response.stream().findFirst().get().getPrice(), equalTo(30.5));
+		assertThat(response.stream().findFirst().get().getPrice(), equalTo(priceExpected));
 	}
 	
-	@Test
-	void findPriceByProductIdAndBrandIdIntoDateTestOK5() {
-		date = LocalDateTime.parse("2020-06-16T21:00:00");
+	private void createKOTest (Integer productId, Integer brandId, LocalDateTime date) {
 		response = pricesRepository.findPriceByProductIdAndBrandIdIntoDate(productId, brandId, date);
-		
-		assertThat(response.stream().findFirst().get().getPrice(), equalTo(38.95));
-	}
-	
-	@Test
-	void findPriceByProductIdAndBrandIdIntoDateTestKO6() {
-		productId = 33333;
-		response = pricesRepository.findPriceByProductIdAndBrandIdIntoDate(productId, brandId, date);
-
-		assertThat(response, IsEmptyCollection.empty());
-	}
-	
-	@Test
-	void findPriceByProductIdAndBrandIdIntoDateTestKO7() {
-		brandId = 2;
-		response = pricesRepository.findPriceByProductIdAndBrandIdIntoDate(productId, brandId, date);
-
 		assertThat(response, IsEmptyCollection.empty());
 	}
 }
