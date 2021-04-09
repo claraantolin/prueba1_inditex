@@ -1,12 +1,12 @@
-package com.inditex.mappers;
+package com.inditex.mapper;
 
 import java.time.LocalDateTime;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
-import com.inditex.dtos.PriceDto;
-import com.inditex.entities.Prices;
+import com.inditex.dto.PriceDto;
+import com.inditex.entity.Prices;
 
 @Mapper(componentModel = "spring")
 public interface PriceMapper {

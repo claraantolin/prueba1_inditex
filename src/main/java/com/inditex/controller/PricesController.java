@@ -1,4 +1,4 @@
-package com.inditex.rest;
+package com.inditex.controller;
 
 import java.time.LocalDateTime;
 
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.inditex.dtos.PriceDto;
+import com.inditex.dto.PriceDto;
 import com.inditex.service.PricesService;
 
 @RestController
@@ -18,7 +18,7 @@ public class PricesController {
 	
 	@Autowired
 	private PricesService service;
-	
+		
 	@GetMapping(value="/product/{productId}/brand/{brandId}/{date}")
 	public PriceDto getProductDataInfo(
 			@PathVariable Integer productId, 

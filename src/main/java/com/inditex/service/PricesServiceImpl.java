@@ -7,9 +7,9 @@ import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.inditex.dtos.PriceDto;
-import com.inditex.entities.Prices;
-import com.inditex.mappers.PriceMapper;
+import com.inditex.dto.PriceDto;
+import com.inditex.entity.Prices;
+import com.inditex.mapper.PriceMapper;
 import com.inditex.repository.PricesRepository;
 
 @Service

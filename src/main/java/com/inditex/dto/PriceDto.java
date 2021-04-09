@@ -1,4 +1,4 @@
-package com.inditex.dtos;
+package com.inditex.dto;
 
 import java.time.LocalDateTime;
 

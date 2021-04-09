@@ -2,7 +2,7 @@ package com.inditex.service;
 
 import java.time.LocalDateTime;
 
-import com.inditex.dtos.PriceDto;
+import com.inditex.dto.PriceDto;
 
 public interface PricesService {
 	

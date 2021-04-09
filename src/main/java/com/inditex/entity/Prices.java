@@ -1,4 +1,4 @@
-package com.inditex.entities;
+package com.inditex.entity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;

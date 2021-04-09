@@ -1,4 +1,4 @@
-package com.inditex.exceptions;
+package com.inditex.exception;
 
 import java.util.Date;
 import java.util.NoSuchElementException;
