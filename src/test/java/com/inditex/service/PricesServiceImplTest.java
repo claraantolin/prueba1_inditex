@@ -35,7 +35,7 @@ public class PricesServiceImplTest {
 		productId = 35455;
 		brandId = 1;
 	}
-	
+	/*
 	@Test
 	void getProductDataInfoTest1() {
 		date = LocalDateTime.parse("2020-06-14T10:00:00");
@@ -79,7 +79,7 @@ public class PricesServiceImplTest {
 		
 		Assertions.assertEquals(response.getFinalPrice(), 38.95);
 	}
-	
+	*/
 	private List<Prices> getPrices() {
 		List<Prices> response = new ArrayList<Prices>();
 

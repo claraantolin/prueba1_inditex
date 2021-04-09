@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.inditex.dtos.PriceDto;
 import com.inditex.entities.Prices;
+import com.inditex.mappers.PriceMapper;
 import com.inditex.repository.PricesRepository;
 
 @Service
@@ -17,29 +18,17 @@ public class PricesServiceImpl implements PricesService{
 	@Autowired
 	private PricesRepository repository;
 	
+	@Autowired
+	private PriceMapper mapper;
+	
 	@Override
 	public PriceDto getPriceDataInfo(LocalDateTime date, Integer productId, Integer brandId) {	
 		
 		List<Prices> priceProductDataInfo = repository.findPriceByProductIdAndBrandIdIntoDate(productId, brandId, date);
-		return parseResponse(priceProductDataInfo, date);
+		if (priceProductDataInfo.isEmpty()) throw new NoSuchElementException("Price not found");
 		
-	}
-	
-	private PriceDto parseResponse (List<Prices> prices, LocalDateTime date) {
+		return mapper.toDTO(priceProductDataInfo.stream().findFirst().get(), date);
 		
-		PriceDto response = new PriceDto();
-		
-		if (prices.isEmpty()) throw new NoSuchElementException("Price not found");
-		
-		Prices finalPrice = prices.stream().findFirst().get();
-		
-		response.setProductId(finalPrice.getProductId());
-		response.setBrandId(finalPrice.getBrandId());
-		response.setDate(date);
-		response.setFinalPrice(finalPrice.getPrice());
-		
-		return response;
-	}
-	
+	}	
 
 }

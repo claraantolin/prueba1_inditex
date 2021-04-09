@@ -7,7 +7,7 @@ public class PriceDto {
 	private Integer productId;
 	private Integer brandId;
 	private LocalDateTime date;
-	private Double finalPrice;
+	private Double price;
 	
 	public Integer getProductId() {
 		return productId;
@@ -27,11 +27,11 @@ public class PriceDto {
 	public void setDate(LocalDateTime date) {
 		this.date = date;
 	}
-	public Double getFinalPrice() {
-		return finalPrice;
+	public Double getPrice() {
+		return price;
 	}
-	public void setFinalPrice(Double finalPrice) {
-		this.finalPrice = finalPrice;
+	public void setPrice(Double price) {
+		this.price = price;
 	}
 
 	
