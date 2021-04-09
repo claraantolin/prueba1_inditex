@@ -1,23 +1,36 @@
 package com.inditex.service;
 
+
+import static org.mockito.Mockito.when;
+
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.inditex.dtos.PriceDto;
+import com.inditex.entities.Prices;
+import com.inditex.repository.PricesRepository;
 
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
 public class PricesServiceImplTest {
 
 	@Autowired
 	private PricesService service;
+	
+	@Mock
+	private PricesRepository repositoryMock;
 		
-	// parameters
 	PriceDto response;	
 	private LocalDateTime date;
 	private Integer productId;
@@ -31,68 +44,23 @@ public class PricesServiceImplTest {
 	}
 	
 	@Test
-	void getProductDataInfoTestOK1() {
+	void getPriceDtoTestOK1() {
 		date = LocalDateTime.parse("2020-06-14T10:00:00");
 		response = service.getPriceDataInfo(date, productId, brandId);
-		
-		Assertions.assertEquals(response.getPrice(), 35.5);
-	}
-	
-	@Test
-	void getProductDataInfoTestOK2() {
-		date = LocalDateTime.parse("2020-06-14T16:00:00");
-		
-		response = service.getPriceDataInfo(date, productId, brandId);
-		
-		Assertions.assertEquals(response.getPrice(), 25.45);
-	}
-	
-	@Test
-	void getProductDataInfoTestOK3() {
-		date = LocalDateTime.parse("2020-06-14T21:00:00");
-		
-		response = service.getPriceDataInfo(date, productId, brandId);
-		
-		Assertions.assertEquals(response.getPrice(), 35.5);
-	}
-	
-	@Test
-	void getProductDataInfoTestOK4() {
-		date = LocalDateTime.parse("2020-06-15T10:00:00");
 
-		response = service.getPriceDataInfo(date, productId, brandId);
-		
-		Assertions.assertEquals(response.getPrice(), 30.5);
+		Assertions.assertEquals(response.getProductId(), productId);
+		Assertions.assertEquals(response.getBrandId(), brandId);
+		Assertions.assertEquals(response.getDate(), date);
 	}
 	
 	@Test
-	void getProductDataInfoTestOK5() {
-		date = LocalDateTime.parse("2020-06-16T21:00:00");
+	void getPriceDtoTestKO2() {
+		when(repositoryMock.findPriceByProductIdAndBrandIdIntoDate(Mockito.any(Integer.class), Mockito.any(Integer.class), Mockito.any(LocalDateTime.class))).thenReturn(new ArrayList<Prices>());
 		
-		response = service.getPriceDataInfo(date, productId, brandId);
-		
-		Assertions.assertEquals(response.getPrice(), 38.95);
-	}
-	
-	@Test
-	void getProductDataInfoTestKO6() {
-		date = LocalDateTime.parse("2020-06-16T21:00:00");
-		productId = 33333;
-				
-		Assertions.assertThrows(NoSuchElementException.class, () -> {
-			service.getPriceDataInfo(date, productId, brandId);
-		});
-
-	}
-	
-	@Test
-	void getProductDataInfoTestKO7() {
-		date = LocalDateTime.parse("2020-06-16T21:00:00");
-		brandId = 2;
-				
 		Assertions.assertThrows(NoSuchElementException.class, () -> {
 			service.getPriceDataInfo(date, productId, brandId);
 		});
 	}
+	
 	
 }
