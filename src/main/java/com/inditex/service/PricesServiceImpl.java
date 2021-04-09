@@ -28,7 +28,6 @@ public class PricesServiceImpl implements PricesService{
 		if (priceProductDataInfo.isEmpty()) throw new NoSuchElementException("Price not found");
 		
 		return mapper.toDTO(priceProductDataInfo.stream().findFirst().get(), date);
-		
 	}	
 
 }

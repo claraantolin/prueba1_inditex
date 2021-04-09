@@ -42,7 +42,6 @@ public class Prices implements Serializable{
 	@Column(name="CURR")
 	private String currency;
 
-	// constructor
 	public Prices() {}
 	
 	public Prices(Integer priceList, Integer brandId, LocalDateTime startDate, LocalDateTime endDate, Integer productId, Integer priority, Double price, String currency) {
@@ -58,7 +57,6 @@ public class Prices implements Serializable{
 		
 	}
 
-	/* getters y setters */
 	
 	public Integer getPriceList() {
 		return priceList;
