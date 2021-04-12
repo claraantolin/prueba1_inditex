@@ -10,15 +10,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.inditex.dto.PriceDto;
+import com.inditex.exception.ErrorResponse;
 import com.inditex.service.PricesService;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
+@ApiOperation(value = "/prices", tags = "Prices Controller")
 @RestController
 @RequestMapping("/prices")
 public class PricesController {
 	
 	@Autowired
 	private PricesService service;
-		
+
+	@ApiOperation(value = "Get the prices of a product in a concrete date", response = PriceDto.class)
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "OK", response = PriceDto.class),
+			@ApiResponse(code = 404, message = "Price not found", response = ErrorResponse.class)
+	})
 	@GetMapping(value="/product/{productId}/brand/{brandId}/{date}")
 	public PriceDto getProductDataInfo(
 			@PathVariable Integer productId, 

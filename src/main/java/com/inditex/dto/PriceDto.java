@@ -2,11 +2,22 @@ package com.inditex.dto;
 
 import java.time.LocalDateTime;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(description = "Price DTO")
 public class PriceDto {
 	
+	@ApiModelProperty(notes = "ID of the product", name = "productId")
 	private Integer productId;
+	
+	@ApiModelProperty(notes = "ID of the brand", name = "brandId")
 	private Integer brandId;
+
+	@ApiModelProperty(notes = "Price date", name = "date")
 	private LocalDateTime date;
+
+	@ApiModelProperty(notes = "Price of the product", name = "price")
 	private Double price;
 	
 	public Integer getProductId() {

@@ -2,6 +2,10 @@ package com.inditex.exception;
 
 import java.util.Date;
 
+import io.swagger.annotations.ApiModel;
+
+
+@ApiModel(description = "Error Response")
 public class ErrorResponse {
 
 	private int status;
